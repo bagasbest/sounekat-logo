@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "560498655779",
+    "project_id": "sounekat-logo",
+    "storage_bucket": "sounekat-logo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560498655779:android:c73402f0b352c70f96a796",
+        "android_client_info": {
+          "package_name": "com.sounekatlogo.sounekatlogo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560498655779-qlr933uuv2ues23mqmd0qtvptrv0b4nv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoamifggEhlfexfPCx0-LWLiwoQz5_wfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560498655779-qlr933uuv2ues23mqmd0qtvptrv0b4nv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
