@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/temp/SounekatLogo/app/src/main/res/drawable/bg_rounded_bottom.xml" value="0.181" />
+        <entry key="..\:/temp/SounekatLogo/app/src/main/res/layout/activity_homepage.xml" value="0.176" />
+        <entry key="..\:/temp/SounekatLogo/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/temp/SounekatLogo/app/src/main/res/layout/activity_main.xml" value="0.1431159420289855" />
+        <entry key="..\:/temp/SounekatLogo/app/src/main/res/layout/activity_photo_add_edit.xml" value="0.22239583333333332" />
         <entry key="..\:/temp/SounekatLogo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.181" />
       </map>
     </option>

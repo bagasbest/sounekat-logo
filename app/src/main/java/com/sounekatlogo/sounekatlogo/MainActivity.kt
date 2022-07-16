@@ -1,8 +1,14 @@
 package com.sounekatlogo.sounekatlogo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import com.bumptech.glide.Glide
 import com.sounekatlogo.sounekatlogo.databinding.ActivityMainBinding
+import com.sounekatlogo.sounekatlogo.ui.HomepageActivity
+import com.sounekatlogo.sounekatlogo.ui.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,6 +19,13 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Glide.with(this)
+            .load(R.drawable.logo)
+            .into(binding.logo)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, HomepageActivity::class.java))
+        }, 3000)
 
 
 

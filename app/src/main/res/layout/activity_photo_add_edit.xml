@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/primary"
+    tools:context=".ui.photo.PhotoAddEditActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <com.rosemaryapp.amazingspinner.AmazingSpinner
+                    android:id="@+id/status"
+                    style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:backgroundTint="@color/white"
+                    android:background="@drawable/bg_rounded_bottom"
+                    android:layout_height="wrap_content"
+                    android:hint="Bentuk Photo" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:id="@+id/addPhoto"
+                android:paddingEnd="16sp"
+                android:drawablePadding="10dp"
+                android:textColor="@color/white"
+                android:drawableStart="@drawable/ic_baseline_add_circle_outline_24"
+                android:paddingStart="16sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16sp"
+                android:text="Tambah Foto"
+                android:backgroundTint="@color/teal_700"
+                android:background="@drawable/bg_rounded_bottom" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/bg_rounded_bottom"
+                android:backgroundTint="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/horizontal"
+                    android:layout_width="300dp"
+                    android:layout_height="250dp"
+                    android:layout_margin="16sp"
+                    android:visibility="gone"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:riv_corner_radius="16sp" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/vertical"
+                    android:layout_width="200dp"
+                    android:layout_height="350dp"
+                    android:layout_margin="16sp"
+                    android:visibility="gone"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:riv_corner_radius="16sp" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/persegi"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_margin="16sp"
+                    android:visibility="gone"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:riv_corner_radius="16sp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_rounded_bottom"
+                    android:backgroundTint="@color/white"
+                    android:hint="Nama Photo"
+                    android:inputType="textCapWords"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_rounded_bottom"
+                    android:backgroundTint="@color/white"
+                    android:hint="Deskripsi Photo (opsional)"
+                    android:inputType="textCapWords"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16sp"/>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="30dp"
+                android:id="@+id/saveBtn"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/bg_rounded_bottom"
+                android:backgroundTint="@color/teal_700"
+                android:text="Simpan Photo" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

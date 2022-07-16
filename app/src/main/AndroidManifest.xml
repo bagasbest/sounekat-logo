@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.sounekatlogo.sounekatlogo">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- UNTUK MEMBACA FILE YANG ADA DI GALERI -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SounekatLogo"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.photo.PhotoAddEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.HomepageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

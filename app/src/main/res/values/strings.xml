@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Sounekat Logo</string>
+    <string name="button">button</string>
+
+    <string-array name="image_size">
+        <item>Horizontal</item>
+        <item>Vertikal</item>
+        <item>Persegi</item>
+    </string-array>
 </resources>
