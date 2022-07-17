@@ -85,6 +85,8 @@ class HomepageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityHomepageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.rvVertical.isNestedScrollingEnabled = false
+
 
         binding.loginBtn.setOnClickListener{
             if(!isAdmin) {
@@ -110,6 +112,7 @@ class HomepageActivity : AppCompatActivity() {
                 dialogInterface.dismiss()
                 FirebaseAuth.getInstance().signOut()
                 isAdmin = false
+                binding.fabAddPhotoBtn.visibility = View.GONE
                 Toast.makeText(this, "Berhasil Logout!", Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton("TIDAK", null)

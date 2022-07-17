@@ -7,6 +7,8 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -32,6 +34,7 @@ class PhotoDetailActivity : AppCompatActivity() {
             0
         }
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,11 +86,13 @@ class PhotoDetailActivity : AppCompatActivity() {
 
         binding.downloadBtn.setOnClickListener {
             requestPermissionLauncher.launch(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            if(permission==1) {
-                downloadImage()
-            } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
-            }
+            Handler(Looper.getMainLooper()).postDelayed({
+                if(permission==1) {
+                    downloadImage()
+                } else {
+                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+                }
+            }, 200)
         }
 
         binding.backButton.setOnClickListener {
