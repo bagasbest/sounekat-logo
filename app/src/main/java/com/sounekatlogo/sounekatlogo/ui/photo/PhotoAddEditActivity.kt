@@ -16,10 +16,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.sounekatlogo.sounekatlogo.R
 import com.sounekatlogo.sounekatlogo.databinding.ActivityPhotoAddEditBinding
+import com.sounekatlogo.sounekatlogo.ui.HomepageActivity
 
 class PhotoAddEditActivity : AppCompatActivity() {
 
-    private var _binding : ActivityPhotoAddEditBinding? = null
+    private var _binding: ActivityPhotoAddEditBinding? = null
     private val binding get() = _binding!!
 
     /// variable untuk menampung gambar dari galeri handphone
@@ -27,8 +28,9 @@ class PhotoAddEditActivity : AppCompatActivity() {
 
     /// variable untuk permission ke galeri handphone
     private val REQUEST_IMAGE_GALLERY = 1001
-    private var option : String? = null
-    private var imageSize : String? = null
+    private var option: String? = null
+    private var imageSize: String? = null
+    private var model : PhotoDetailModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,15 +39,48 @@ class PhotoAddEditActivity : AppCompatActivity() {
 
         option = intent.getStringExtra(OPTION)
         showDropdownImageSize()
-        if(option == "add") {
+        if (option == "add") {
             binding.title.text = "Unggah Photo Baru"
-        }else {
+        } else {
             binding.title.text = "Edit Photo"
+            model = intent.getParcelableExtra(EXTRA_DATA)
+            image = model?.image
+            imageSize = model?.imageSize
+
+            when (imageSize) {
+                "Vertikal" -> {
+                    binding.vertical.visibility = View.VISIBLE
+                    Glide.with(this)
+                        .load(image)
+                        .into(binding.vertical)
+                }
+                "Horizontal" -> {
+                    binding.horizontal.visibility = View.VISIBLE
+                    Glide.with(this)
+                        .load(image)
+                        .into(binding.horizontal)
+
+                }
+                "Persegi" -> {
+                    binding.persegi.visibility = View.VISIBLE
+                    Glide.with(this)
+                        .load(image)
+                        .into(binding.persegi)
+
+                }
+            }
+            binding.name.setText(model?.name)
+            binding.description.setText(model?.description)
+
         }
 
         binding.addPhoto.setOnClickListener {
-            if(imageSize == null) {
-                Toast.makeText(this, "Silahkan pilih bentuk photo terlebih dahulu!", Toast.LENGTH_SHORT).show()
+            if (imageSize == null) {
+                Toast.makeText(
+                    this,
+                    "Silahkan pilih bentuk photo terlebih dahulu!",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 ImagePicker.with(this)
                     .galleryOnly()
@@ -64,39 +99,74 @@ class PhotoAddEditActivity : AppCompatActivity() {
         val name = binding.name.text.toString().trim()
         val description = binding.description.text.toString().trim()
 
-        if(image == null) {
+        if (image == null) {
             Toast.makeText(this, "Photo tidak boleh kosong!", Toast.LENGTH_SHORT).show()
         } else if (name.isEmpty()) {
             Toast.makeText(this, "Nama Photo tidak boleh kosong!", Toast.LENGTH_SHORT).show()
         } else {
             binding.progressBar.visibility = View.VISIBLE
 
-            val uid = System.currentTimeMillis().toString()
-            val data = mapOf(
-                "uid" to uid,
-                "name" to name,
-                "description" to description,
-                "imageSize" to imageSize,
-                "image" to image,
-            )
+            if (intent.getStringExtra(OPTION) == "add") {
+                val uid = System.currentTimeMillis().toString()
+                val data = mapOf(
+                    "uid" to uid,
+                    "name" to name,
+                    "description" to description,
+                    "imageSize" to imageSize,
+                    "image" to image,
+                )
 
-            FirebaseFirestore
-                .getInstance()
-                .collection("image")
-                .document(uid)
-                .set(data)
-                .addOnCompleteListener {
-                    binding.progressBar.visibility = View.GONE
-                    if(it.isSuccessful) {
-                        binding.name.setText("")
-                        binding.description.setText("")
-                        imageSize = null
-                        image = null
-                        showSuccessDialog()
-                    } else {
-                        showFailureDialog()
+                FirebaseFirestore
+                    .getInstance()
+                    .collection("image")
+                    .document(uid)
+                    .set(data)
+                    .addOnCompleteListener {
+                        binding.progressBar.visibility = View.GONE
+                        if (it.isSuccessful) {
+                            binding.name.setText("")
+                            binding.description.setText("")
+                            imageSize = null
+                            image = null
+                            showSuccessDialog()
+                        } else {
+                            showFailureDialog()
+                        }
                     }
-                }
+
+
+            } else {
+                val data = mapOf(
+                    "name" to name,
+                    "description" to description,
+                    "imageSize" to imageSize,
+                    "image" to image,
+                )
+
+                FirebaseFirestore
+                    .getInstance()
+                    .collection("image")
+                    .document(model?.uid!!)
+                    .update(data)
+                    .addOnCompleteListener {
+                        binding.progressBar.visibility = View.GONE
+                        if (it.isSuccessful) {
+                            binding.name.setText("")
+                            binding.description.setText("")
+                            imageSize = null
+                            image = null
+
+                            Toast.makeText(this, "Berhasil mengedit foto!", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, HomepageActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
+                            finish()
+
+                        } else {
+                            showFailureDialog()
+                        }
+                    }
+            }
         }
     }
 
@@ -231,5 +301,6 @@ class PhotoAddEditActivity : AppCompatActivity() {
 
     companion object {
         const val OPTION = "option"
+        const val EXTRA_DATA = "data"
     }
 }

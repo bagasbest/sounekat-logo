@@ -18,6 +18,12 @@
         android:theme="@style/Theme.SounekatLogo"
         tools:targetApi="31">
         <activity
+            android:name=".ui.photo.PhotoExpandActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.photo.PhotoDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.photo.PhotoAddEditActivity"
             android:exported="false" />
         <activity
